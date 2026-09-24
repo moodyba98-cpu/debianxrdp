@@ -58,10 +58,19 @@ RUN sed -i 's/^crypt_level=.*/crypt_level=low/' /etc/xrdp/xrdp.ini && \
 RUN adduser xrdp ssl-cert
 
 # Startup script
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
+#COPY start.sh /start.sh
+# RUN chmod +x /start.sh
 
 # XRDP port
+# EXPOSE 3389
+
+# CMD ["/start.sh"]
+
+COPY start.sh /start.sh
+
+RUN sed -i 's/\r$//' /start.sh && \
+    chmod +x /start.sh
+
 EXPOSE 3389
 
-CMD ["/start.sh"]
+CMD ["/bin/bash", "/start.sh"]
