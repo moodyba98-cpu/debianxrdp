@@ -16,5 +16,5 @@ chmod 1777 /tmp/.X11-unix
 # Start XRDP
 service xrdp start
 
-# Keep container alive and show XRDP logs
+# Keep the container alive
 tail -F /var/log/xrdp/xrdp.log /var/log/xrdp/xrdp-sesman.log
